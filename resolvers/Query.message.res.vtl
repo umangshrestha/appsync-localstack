@@ -1,0 +1,4 @@
+#if($util.isNullOrEmpty($context.result.id))
+    $util.error("No data found in result", "NoDataFound")
+#end
+$util.toJson($context.result)

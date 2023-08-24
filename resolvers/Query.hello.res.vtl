@@ -1,0 +1,4 @@
+#set($var = $context.args.name)
+#set($defaultName = "World")
+#set($name = $util.defaultIfNullOrBlank($var, $defaultName))
+Hello, $name!

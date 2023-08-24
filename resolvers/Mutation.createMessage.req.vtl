@@ -1,0 +1,21 @@
+{
+    "version": "2018-05-29",
+    "operation": "UpdateItem",
+    "key": {
+        "id": $util.dynamodb.toDynamoDBJson($util.autoId())
+    },
+    "update": {
+        "expression": "SET #timestamp = :timestamp, #sender = :sender, #text = :text",
+        "expressionNames": {
+            "#timestamp": "timestamp",
+            "#sender": "sender",
+            "#text": "text"
+        },
+        "expressionValues": {
+            ":timestamp": $util.dynamodb.toDynamoDBJson($util.time.nowEpochMilliSeconds()),
+            ":sender": $util.dynamodb.toDynamoDBJson($context.args.username),
+            ":text": $util.dynamodb.toDynamoDBJson($context.args.text)
+        }
+    },
+    "returnValues": "UPDATED_NEW"
+}

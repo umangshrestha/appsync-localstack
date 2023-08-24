@@ -1,0 +1,8 @@
+{
+    "version" : "2018-05-29",
+    "operation" : "DeleteItem",
+    "key": {
+        "id": $util.dynamodb.toDynamoDBJson($context.args.id),
+    },
+    "returnValues": "ALL_OLD"
+}

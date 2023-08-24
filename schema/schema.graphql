@@ -1,0 +1,30 @@
+type Message {
+    id: ID
+    timestamp: String
+    sender: String
+    text: String
+}
+
+schema {
+    query: Query
+    mutation: Mutation
+    subscription: Subscription
+}
+
+type Query {
+    hello(name: String): String!
+
+    message(id: ID!): Message
+    messages: [Message!]!
+}
+
+type Mutation {
+    createMessage(sender: String!, text: String!): Message
+    deleteMessage(id: ID!): Message
+}
+
+type Subscription {
+    messageCreated: Message
+        @aws_subscribe(mutations: ["createMessage"])
+}
+
